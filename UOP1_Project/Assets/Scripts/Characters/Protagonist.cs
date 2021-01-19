@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 /// <summary>
@@ -112,5 +113,12 @@ public class Protagonist : MonoBehaviour
 		_openInventoryChannel.RaiseEvent();
 	}
 
-	private void OnAttack() => attackInput = true;
+	private void OnAttack() => StartCoroutine(Attack());
+
+	private IEnumerator Attack()
+	{
+		attackInput = true;
+		yield return null;
+		attackInput = false;
+	}
 }
